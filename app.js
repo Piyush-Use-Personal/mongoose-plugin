@@ -10,8 +10,8 @@ const init = async () => {
     password: 'test'
   })
   await user.save()
-  const comparePassword1 = await user.comparePassword('some other password')
-  const comparePassword2 = await user.comparePassword('test')
+  await user.hashField('email')
+  const data = await Auth.find()
   console.log({
     comparePassword1,
     comparePassword2

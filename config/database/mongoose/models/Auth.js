@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
+const hash = require("../plugin/hash");
 const { Schema } = mongoose;
 const SALT_WORK_FACTOR = 10;
 const AuthSchema = new Schema(
@@ -25,7 +26,7 @@ const AuthSchema = new Schema(
   },
   { timestamps: true }
 );
-
+AuthSchema.plugin(hash);
 // encrypt password before storing it in database
 AuthSchema.pre("save", function (next) {
   let user = this;
