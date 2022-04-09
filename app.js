@@ -10,12 +10,9 @@ const init = async () => {
     password: 'test'
   })
   await user.save()
+  const comparePassword = user.comparePassword('test')
   await user.hashField('email')
   const data = await Auth.find()
-  console.log({
-    comparePassword1,
-    comparePassword2
-  })
 }
 
 mongoose.connect(process.env.MONGODB_URL).then(init)
